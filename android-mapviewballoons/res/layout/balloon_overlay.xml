@@ -1,67 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/balloon_main_layout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/balloon_overlay_bg_selector"
-    android:minWidth="200dip"
-    android:orientation="horizontal"
-    android:paddingBottom="25dip"
-    android:paddingLeft="10dip"
-    android:paddingRight="0dip"
-    android:paddingTop="0dip" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:id="@+id/balloon_main_layout" android:orientation="vertical"
+	android:paddingBottom="5dip" android:paddingTop="5dip"
+	android:paddingLeft="10dip"
+	android:paddingRight="10dip"
+	>
 
-    <LinearLayout
-        android:id="@id/balloon_inner_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dip"
-        android:layout_weight="1" >
+	<ImageView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/balloon_item_favorite"
+		android:layout_alignParentRight="true"
+		android:contentDescription="Mark stop as favorite"></ImageView>
+	<TextView android:layout_height="wrap_content"
+		android:layout_width="wrap_content" android:id="@+id/balloon_item_title"
+		android:textSize="15dip"
+		android:textColor="#FF000000" android:bufferType="spannable"
+		android:layout_toLeftOf="@+id/balloon_item_favorite"
+		android:layout_alignParentLeft="true"></TextView>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:minHeight="40dip"
-            android:orientation="vertical" >
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/balloon_item_moreinfo"
+		android:bufferType="spannable" android:layout_toLeftOf="@+id/balloon_item_snippet"
+		android:layout_below="@+id/balloon_item_favorite"
+		
+		android:layout_alignRight="@+id/balloon_item_favorite" 
+		android:layout_marginTop="20dip" android:paddingTop="20dip"
+		android:paddingLeft="5dip" android:paddingBottom="10dip"></TextView>
 
-            <TextView
-                android:id="@+id/balloon_item_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="balloon_item_title"
-                android:textColor="@android:color/primary_text_light"
-                android:textSize="16dip" />
+		<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/balloon_item_alerts"
+		android:bufferType="spannable" android:layout_toLeftOf="@+id/balloon_item_snippet"
+		android:layout_below="@+id/balloon_item_moreinfo"
+		
+		android:layout_alignRight="@+id/balloon_item_moreinfo" 
+		android:layout_marginTop="10dip" android:paddingTop="10dip"
+		android:paddingLeft="5dip" android:paddingBottom="10dip">
+		
+		</TextView>
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/balloon_item_report"
+		android:bufferType="spannable" 
+		android:layout_alignRight="@+id/balloon_item_favorite"
+		android:layout_below="@+id/balloon_item_alerts" 
+		android:layout_marginTop="10dip" android:paddingTop="5dip"
+		android:paddingLeft="5dip" android:paddingBottom="10dip"></TextView>
 
-            <TextView
-                android:id="@+id/balloon_item_snippet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="balloon_item_snippet"
-                android:textColor="@android:color/secondary_text_light"
-                android:textSize="12dip" />
-        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/balloon_disclosure"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:paddingTop="3dip"
-            android:src="@drawable/balloon_disclosure"
-            android:visibility="gone" />
-    </LinearLayout>
+	<TextView android:layout_height="wrap_content"
+		android:layout_width="wrap_content" android:id="@+id/balloon_item_snippet"
+		android:textSize="12dip"
+		android:textColor="#FF000000" android:bufferType="spannable"
+		android:layout_below="@+id/balloon_item_title"
+		android:layout_toLeftOf="@+id/balloon_item_report"
+		android:layout_alignLeft="@+id/balloon_item_title"
+		></TextView>
 
-    <ImageView
-        android:id="@id/balloon_close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dip"
-        android:paddingLeft="10dip"
-        android:paddingRight="5dip"
-        android:paddingTop="5dip"
-        
-        android:src="@drawable/balloon_overlay_close" />
-
-</LinearLayout>
+</RelativeLayout>
