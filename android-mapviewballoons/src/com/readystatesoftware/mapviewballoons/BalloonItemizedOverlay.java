@@ -53,7 +53,6 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 	private int currentFocusedIndex;
 	
 	private boolean showClose = true;
-	private boolean showDisclosure = false;
 	private boolean snapToCenter = true;
 	
 	private static boolean isInflating = false;
@@ -297,12 +296,6 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 					});
 				}
 			}
-			if (showDisclosure && !showClose) {
-				View v = balloonView.findViewById(R.id.balloon_disclosure);
-				if (v != null) {
-					v.setVisibility(View.VISIBLE);
-				}
-			}
 			isRecycled = false;
 		} else {
 			isRecycled = true;
@@ -337,10 +330,6 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 	
 	public void setShowClose(boolean showClose) {
 		this.showClose = showClose;
-	}
-
-	public void setShowDisclosure(boolean showDisclosure) {
-		this.showDisclosure = showDisclosure;
 	}
 
 	public void setSnapToCenter(boolean snapToCenter) {
