@@ -112,7 +112,7 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 	 */
 	@Override
 	//protected final boolean onTap(int index) {
-	public final boolean onTap(int index) {
+	public boolean onTap(int index) {
 		
 		handler.removeCallbacks(finishBalloonInflation);
 		isInflating = true;
@@ -357,4 +357,7 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 		}
 	};
 	
+	protected BalloonOverlayView<Item> getBalloonView() {
+		return balloonView;
+	}
 }
