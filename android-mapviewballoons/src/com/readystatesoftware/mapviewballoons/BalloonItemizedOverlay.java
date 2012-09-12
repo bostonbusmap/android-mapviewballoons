@@ -45,8 +45,6 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 	
 	private MapView mapView;
 	private BalloonOverlayView<Item> balloonView;
-	private View clickRegion;
-	private View closeRegion;
 	private int viewOffset;
 	final MapController mc;
 	private Item currentFocusedItem;
@@ -281,21 +279,6 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 		boolean isRecycled;
 		if (balloonView == null) {
 			balloonView = createBalloonOverlayView();
-			clickRegion = (View) balloonView.findViewById(R.id.balloon_inner_layout);
-			clickRegion.setOnTouchListener(createBalloonTouchListener());
-			closeRegion = (View) balloonView.findViewById(R.id.balloon_close);
-			if (closeRegion != null) {
-				if (!showClose) {
-					closeRegion.setVisibility(View.GONE);
-				} else {
-					closeRegion.setOnClickListener(new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							hideBalloon();	
-						}
-					});
-				}
-			}
 			isRecycled = false;
 		} else {
 			isRecycled = true;
