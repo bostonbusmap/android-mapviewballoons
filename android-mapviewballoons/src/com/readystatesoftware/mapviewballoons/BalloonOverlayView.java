@@ -16,6 +16,7 @@
 package com.readystatesoftware.mapviewballoons;
 
 import android.content.Context;
+import android.text.Html;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -102,14 +103,14 @@ public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 	protected void setBalloonData(Item item, ViewGroup parent) {
 		if (item.getTitle() != null) {
 			title.setVisibility(VISIBLE);
-			title.setText(item.getTitle());
+			title.setText(Html.fromHtml(item.getTitle()));
 		} else {
 			title.setText("");
 			title.setVisibility(GONE);
 		}
 		if (item.getSnippet() != null) {
 			snippet.setVisibility(VISIBLE);
-			snippet.setText(item.getSnippet());
+			snippet.setText(Html.fromHtml(item.getSnippet()));
 		} else {
 			snippet.setText("");
 			snippet.setVisibility(GONE);
@@ -118,7 +119,7 @@ public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 	
 	private class LimitLinearLayout extends LinearLayout {
 
-	    private static final int MAX_WIDTH_DP = 280;
+	    private static final int MAX_WIDTH_DP = 480;
 	    
 	    final float SCALE = getContext().getResources().getDisplayMetrics().density;
 
