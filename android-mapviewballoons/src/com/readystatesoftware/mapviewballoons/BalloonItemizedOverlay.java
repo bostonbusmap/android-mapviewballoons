@@ -41,7 +41,7 @@ import com.google.android.maps.OverlayItem;
 public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends ItemizedOverlay<Item> {
 
 	private static final long BALLOON_INFLATION_TIME = 300;
-	private static Handler handler = new Handler();
+	private static final Handler handler = new Handler();
 	
 	private MapView mapView;
 	private BalloonOverlayView<Item> balloonView;
@@ -117,7 +117,7 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 		
 		currentFocusedIndex = index;
 		currentFocusedItem = createItem(index);
-		setLastFocusedIndex(index);
+		//setLastFocusedIndex(index);
 		
 		onBalloonOpen(index);
 		createAndDisplayBalloonOverlay();
