@@ -25,12 +25,14 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 
-import com.google.android.maps.GeoPoint;
-import com.google.android.maps.ItemizedOverlay;
-import com.google.android.maps.MapController;
-import com.google.android.maps.MapView;
-import com.google.android.maps.Overlay;
-import com.google.android.maps.OverlayItem;
+import org.osmdroid.DefaultResourceProxyImpl;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapController;
+import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.ItemizedOverlay;
+import org.osmdroid.views.overlay.Overlay;
+import org.osmdroid.views.overlay.OverlayItem;
+
 
 /**
  * An abstract extension of ItemizedOverlay for displaying an information balloon
@@ -62,7 +64,8 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 	 * @param mapView - The view upon which the overlay items are to be drawn.
 	 */
 	public BalloonItemizedOverlay(Drawable defaultMarker, MapView mapView) {
-		super(defaultMarker);
+		super(defaultMarker, new DefaultResourceProxyImpl(mapView.getContext()));
+		// TODO: is null correct here?
 		this.mapView = mapView;
 		viewOffset = 0;
 		mc = mapView.getController();
@@ -105,8 +108,8 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 	protected void onBalloonOpen(int index) {}
 
 	/* (non-Javadoc)
-	 * @see com.google.android.maps.ItemizedOverlay#onTap(int)
-	 */
+		 * @see com.google.android.maps.ItemizedOverlay#onTap(int)
+		 */
 	@Override
 	//protected final boolean onTap(int index) {
 	public boolean onTap(int index) {
@@ -255,6 +258,19 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 		return currentFocusedItem;
 	}
 
+	public void setLastFocusedIndex(int i) {
+		this.currentFocusedIndex = i;
+	}
+
+	public int getLastFocusedIndex() {
+		return currentFocusedIndex;
+	}
+
+	public static Drawable boundCenterBottom(Drawable drawable) {
+		// TODO: how should we implement this?
+		return drawable;
+	}
+
 	/* (non-Javadoc)
 	 * @see com.google.android.maps.ItemizedOverlay#setFocus(Item)
 	 */
@@ -297,8 +313,9 @@ public abstract class BalloonItemizedOverlay<Item extends OverlayItem> extends I
 		GeoPoint point = currentFocusedItem.getPoint();
 		MapView.LayoutParams params = new MapView.LayoutParams(
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, point,
-				MapView.LayoutParams.BOTTOM_CENTER);
-		params.mode = MapView.LayoutParams.MODE_MAP;
+				MapView.LayoutParams.BOTTOM_CENTER, 0, 0);
+		//params.mode = MapView.LayoutParams.MODE_MAP;
+		// TODO: what should params.mode be?
 		
 		balloonView.setVisibility(View.VISIBLE);
 		
